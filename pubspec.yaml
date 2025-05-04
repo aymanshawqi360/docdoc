@@ -41,6 +41,8 @@ dependencies:
   flutter_bloc: ^9.1.1
   # An SVG rendering and widget library for Flutter, which allows painting 
   flutter_svg: ^2.1.0
+  # for splash screen
+  flutter_native_splash: ^2.4.0
 
 
 dev_dependencies:
