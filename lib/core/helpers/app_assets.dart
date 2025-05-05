@@ -7,4 +7,5 @@ class AppAssets {
       "assets/svg/docdoc_logo_low_transparency.svg";
 
   String onboardingDoctor = "assets/images/onboarding_doctor.png";
+  String googleLogo = "assets/svg/google_logo.svg";
 }
