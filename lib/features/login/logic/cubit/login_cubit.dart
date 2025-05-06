@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
+import 'package:docdoc/core/networking/api_error_handler.dart';
 import 'package:docdoc/core/networking/api_error_model.dart';
 import 'package:docdoc/core/networking/api_result.dart';
-import 'package:docdoc/features/login/data/model/sign_up_request_body.dart';
-import 'package:docdoc/features/login/data/repo/sign_up_repo.dart';
-import 'package:docdoc/features/login/logic/cubit/sign_up_state.dart';
+import 'package:docdoc/features/login/data/model/login_request_body.dart';
+import 'package:docdoc/features/login/data/repo/login_repo.dart';
+import 'package:docdoc/features/login/logic/cubit/login_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +19,8 @@ class LoginCubit extends Cubit<LoginState> {
   login() async {
     emit(LoginLoading());
     final response = await _signUpRepo.login(LoginRequestBody(
-      controllerEmail.text,
-      controllerPassword.text,
+      email: controllerEmail.text,
+      password: controllerPassword.text,
     ));
     if (response is Success<UserCredential>) {
       // if (response.data.user!.emailVerified) {
@@ -31,6 +32,24 @@ class LoginCubit extends Cubit<LoginState> {
     } else if (response is Failure<UserCredential>) {
       emit(LoginFailure(
           errorl: ApiErrorModel(error: response.error.error.toString())));
+    }
+  }
+
+  forgotPassword() async {
+    emit(LoginForgotPasswordLoading());
+    final response = await _signUpRepo
+        .forgotThepassword(LoginRequestBody(email: controllerEmail.text));
+    if (response is Success<String>) {
+      emit(LoginForgotPasswordSuccess());
+    } else if (response is Failure<String>) {
+      if (controllerEmail.text.isEmpty) {
+        emit(LoginForgotPasswordFailure(ApiErrorModel(
+            error:
+                "الرجاءكتابةالبريدالاكتروني ثم قم forgot the password بضعط على")));
+      } else {
+        emit(LoginForgotPasswordFailure(
+            ApiErrorModel(error: response.error.error.toString())));
+      }
     }
   }
 }
