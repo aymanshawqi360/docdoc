@@ -1,5 +1,5 @@
 import 'package:docdoc/core/networking/firebase_factory.dart';
-import 'package:docdoc/features/login/data/model/sign_up_request_body.dart';
+import 'package:docdoc/features/login/data/model/login_request_body.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginFirebaseService {
@@ -19,5 +19,11 @@ class LoginFirebaseService {
     // });
 
     return response;
+  }
+
+  Future<void> forgotThepassword(LoginRequestBody loginRequestBody) async {
+    await _firebaseFactory.firebaseAuth!.sendPasswordResetEmail(
+      email: loginRequestBody.email.toString(),
+    );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:docdoc/core/helpers/spacing.dart';
 import 'package:docdoc/core/widget/app_text_form_button.dart';
-import 'package:docdoc/features/login/logic/cubit/sign_up_cubit.dart';
+import 'package:docdoc/features/login/logic/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
