@@ -54,9 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   verticalSpace(20),
                   const OrSignInWith(),
                   verticalSpace(20),
-                  TextGoogleButton(
-                    onTap: () {},
-                  ),
+                  const TextGoogleButton(),
                 ],
               ),
             ),

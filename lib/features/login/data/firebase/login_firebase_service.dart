@@ -26,4 +26,9 @@ class LoginFirebaseService {
       email: loginRequestBody.email.toString(),
     );
   }
+
+  Future<UserCredential> loginWithGoogle(OAuthCredential credential) async {
+    return await _firebaseFactory.firebaseAuth!
+        .signInWithCredential(credential);
+  }
 }

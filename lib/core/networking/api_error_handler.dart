@@ -47,9 +47,9 @@ class ApiErrorHandler {
           case 'weak-password':
             return ApiErrorModel(error: "كلمة المرور ضعيفة جدًا.");
 
-          case 'too-many-requests':
-            return ApiErrorModel(
-                error: " عدد محاولات تسجيل الدخول كبير جدًا. حاول لاحقًا.");
+          // case 'too-many-requests':
+          //   return ApiErrorModel(
+          //       error: " عدد محاولات تسجيل الدخول كبير جدًا. حاول لاحقًا.");
           case 'network-request-failed':
             return ApiErrorModel(
               error: " تأكد من اتصال الإنترنت وحاول مرة أخرى.",
@@ -157,7 +157,7 @@ class ApiErrorHandler {
       //           .tr());
       // } else {
       //   return ApiErrorModel(
-      //     error: '💥 حدث استثناء غير معروف: ${e.toString()}',
+      //     error: ' حدث استثناء غير معروف: ${e.toString()}',
       //   );
       // }
 
@@ -165,7 +165,7 @@ class ApiErrorHandler {
       // return ApiErrorModel(error: e.toString());
     }
     log(e.toString());
-    return ApiErrorModel(error: "🚨 خطأ غير متوقع: ${e.toString()}");
+    return ApiErrorModel(error: " خطأ غير متوقع: ${e.toString()}");
   }
 }
  
