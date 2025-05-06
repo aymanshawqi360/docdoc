@@ -5,12 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class TextGoogleButton extends StatelessWidget {
-  const TextGoogleButton({super.key});
+  final void Function()? onTap;
+  const TextGoogleButton({super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap ?? () {},
       child: Container(
         width: double.infinity,
         height: 50.h,

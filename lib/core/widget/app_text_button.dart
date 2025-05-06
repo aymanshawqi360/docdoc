@@ -5,12 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextButton extends StatelessWidget {
   final String? text;
-  const AppTextButton({super.key, this.text});
+  final void Function()? onTap;
+  const AppTextButton({super.key, this.text, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap ?? () {},
       child: Container(
         width: double.infinity,
         height: 50.h,

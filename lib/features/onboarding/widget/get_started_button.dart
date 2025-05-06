@@ -14,7 +14,7 @@ class GetStartedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.pushNamedAndRemoveUntil(Routes.signUp, predicate: (v) => false);
+        context.pushNamedAndRemoveUntil(Routes.login, predicate: (v) => false);
       },
       child: Container(
         width: double.infinity,
