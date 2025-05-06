@@ -52,4 +52,15 @@ class LoginCubit extends Cubit<LoginState> {
       }
     }
   }
+
+  loginWithGoogle() async {
+    emit(LoginGoogleLoading());
+    final response = await _signUpRepo.loginWithGoogle();
+    if (response is Success<String>) {
+      emit(LoginGoogleSuccess());
+    } else if (response is Failure<String>) {
+      emit(LoginGoogleFailure(
+          error: ApiErrorModel(error: response.error.error.toString())));
+    }
+  }
 }

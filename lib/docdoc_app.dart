@@ -1,5 +1,6 @@
 import 'package:docdoc/core/routing/app_router.dart';
 import 'package:docdoc/core/routing/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,7 +17,10 @@ class DocdocApp extends StatelessWidget {
         return MaterialApp(
           theme: ThemeData(scaffoldBackgroundColor: Colors.white),
           debugShowCheckedModeBanner: false,
-          initialRoute: Routes.onboarding,
+          initialRoute: (FirebaseAuth.instance.currentUser != null &&
+                  FirebaseAuth.instance.currentUser!.emailVerified)
+              ? Routes.homeScreen
+              : Routes.login,
           onGenerateRoute: appRouter.generateRoute,
         );
       },

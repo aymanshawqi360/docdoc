@@ -28,3 +28,14 @@ class LoginForgotPasswordFailure extends LoginState {
   final ApiErrorModel error;
   LoginForgotPasswordFailure(this.error);
 }
+
+//LoginGoogle
+
+class LoginGoogleLoading extends LoginState {}
+
+class LoginGoogleSuccess extends LoginState {}
+
+class LoginGoogleFailure extends LoginState {
+  final ApiErrorModel error;
+  LoginGoogleFailure({required this.error});
+}
