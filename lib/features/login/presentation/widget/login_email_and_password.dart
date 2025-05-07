@@ -4,15 +4,14 @@ import 'package:docdoc/features/login/logic/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EmailAndPassword extends StatefulWidget {
-  const EmailAndPassword({super.key});
+class LoginEmailAndPassword extends StatefulWidget {
+  const LoginEmailAndPassword({super.key});
 
   @override
-  State<EmailAndPassword> createState() => _EmailAndPasswordState();
+  State<LoginEmailAndPassword> createState() => _LoginEmailAndPasswordState();
 }
 
-class _EmailAndPasswordState extends State<EmailAndPassword> {
-  final cc = TextEditingController();
+class _LoginEmailAndPasswordState extends State<LoginEmailAndPassword> {
   @override
   Widget build(BuildContext context) {
     return Form(

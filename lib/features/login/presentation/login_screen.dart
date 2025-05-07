@@ -1,14 +1,16 @@
+import 'package:docdoc/core/helpers/extension.dart';
 import 'package:docdoc/core/helpers/spacing.dart';
+import 'package:docdoc/core/routing/routes.dart';
 import 'package:docdoc/core/theming/styles.dart';
-
+import 'package:docdoc/core/widget/app_or_signIn_with.dart';
+import 'package:docdoc/core/widget/app_welcome_back_and_were_excited.dart';
 import 'package:docdoc/features/login/logic/cubit/login_cubit.dart';
-import 'package:docdoc/features/login/ui/widget/email_and_password.dart';
-import 'package:docdoc/features/login/ui/widget/login_bloc_listener.dart';
-import 'package:docdoc/features/login/ui/widget/login_text_button.dart';
-import 'package:docdoc/features/login/ui/widget/or_sign_in_with.dart';
-import 'package:docdoc/features/login/ui/widget/remember_me_and_forgot_password.dart';
-import 'package:docdoc/features/login/ui/widget/text_google_button.dart';
-import 'package:docdoc/features/login/ui/widget/welcome_back_and_were_excited.dart';
+import 'package:docdoc/features/login/presentation/widget/login_email_and_password.dart';
+import 'package:docdoc/features/login/presentation/widget/login_bloc_listener.dart';
+import 'package:docdoc/features/login/presentation/widget/login_text_button.dart';
+import 'package:docdoc/features/login/presentation/widget/remember_me_and_forgot_password.dart';
+import 'package:docdoc/features/login/presentation/widget/text_google_button.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,8 +23,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final controllerEmail = TextEditingController();
-  final controllerPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,13 +35,17 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               width: 312.7.w,
               // height: 36.h,
-              child: const WelcomeBackAndWereExcited(),
+              child: const AppWelcomeBackAndWereExcited(
+                textOne: "Welcome Back",
+                textTwo:
+                    "We're excited to have you back, can't wait to\nsee what you've been up to since you last\nlogged in.",
+              ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Column(
                 children: [
-                  const EmailAndPassword(),
+                  const LoginEmailAndPassword(),
                   verticalSpace(16),
                   const RememberMeAndForgotPassword(),
                   verticalSpace(32),
@@ -52,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                   verticalSpace(20),
-                  const OrSignInWith(),
+                  const AppOrSigninWith(),
                   verticalSpace(20),
                   const TextGoogleButton(),
                 ],
@@ -78,13 +82,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextStyles.font11DarkBlueRegular.copyWith(height: 2)),
                 ])),
             //verticalSpace(30),
-            Spacer(),
+            const Spacer(),
             RichText(
                 text: TextSpan(children: [
               TextSpan(
-                  text: "Already have an account yet?",
+                  text: "Don\'t have an account?",
                   style: TextStyles.font13DarkBlueRegular),
-              TextSpan(text: " Sign Up", style: TextStyles.font13BlueRegular),
+              TextSpan(
+                  text: " Sign Up",
+                  style: TextStyles.font13BlueRegular,
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      context.pushNamedAndRemoveUntil(Routes.signUp,
+                          predicate: (v) => false);
+                    }),
             ])),
             const LoginBlocListener()
           ],
