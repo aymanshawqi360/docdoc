@@ -12,9 +12,12 @@ class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit(this._signUpRepo) : super(SignUpInitial());
   final controllerEmail = TextEditingController();
   final controllerPassword = TextEditingController();
+  final controllerFullName = TextEditingController();
+  final controllerPhone = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
 
-  login() async {
+  signUp() async {
     emit(SignUpLoading());
     final response = await _signUpRepo.signUp(SignUpRequestBody(
       email: controllerEmail.text,

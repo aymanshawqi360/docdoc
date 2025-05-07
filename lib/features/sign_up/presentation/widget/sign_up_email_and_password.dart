@@ -1,6 +1,8 @@
 import 'package:docdoc/core/helpers/spacing.dart';
 import 'package:docdoc/core/widget/app_text_form_button.dart';
+import 'package:docdoc/features/sign_up/logic/cubit/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpEmailAndPassword extends StatefulWidget {
   const SignUpEmailAndPassword({super.key});
@@ -15,7 +17,7 @@ class _SignUpEmailAndPasswordState extends State<SignUpEmailAndPassword> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      // key: context.read<LoginCubit>().formKey,
+      key: context.read<SignUpCubit>().formKey,
       child: Column(
         children: [
           Image.asset(
@@ -25,8 +27,7 @@ class _SignUpEmailAndPasswordState extends State<SignUpEmailAndPassword> {
           verticalSpace(28),
           AppTextFormButton(
             hintText: "Full Name",
-            controller: dd,
-            // context.read<SignUpCubit>().controllerPassword,
+            controller: context.read<SignUpCubit>().controllerFullName,
             validator: (value) {
               if (value?.isEmpty == true) {
                 return "Invalid Full Name";
@@ -38,8 +39,7 @@ class _SignUpEmailAndPasswordState extends State<SignUpEmailAndPassword> {
           verticalSpace(14),
           AppTextFormButton(
             hintText: "Email",
-            controller: dd,
-            //  context.read<SignUpCubit>().controllerEmail,
+            controller: context.read<SignUpCubit>().controllerEmail,
             validator: (value) {
               if (value?.isEmpty == true) {
                 return "Invalid Email";
@@ -49,8 +49,7 @@ class _SignUpEmailAndPasswordState extends State<SignUpEmailAndPassword> {
           verticalSpace(14),
           AppTextFormButton(
             hintText: "Password",
-            controller: dd,
-            // context.read<SignUpCubit>().controllerPassword,
+            controller: context.read<SignUpCubit>().controllerPassword,
             validator: (value) {
               if (value?.isEmpty == true) {
                 return "Invalid Password";
@@ -62,8 +61,7 @@ class _SignUpEmailAndPasswordState extends State<SignUpEmailAndPassword> {
           verticalSpace(14),
           AppTextFormButton(
             hintText: "Phone",
-            controller: dd,
-            // context.read<SignUpCubit>().controllerPassword,
+            controller: context.read<SignUpCubit>().controllerPhone,
             validator: (value) {
               if (value?.isEmpty == true) {
                 return "Invalid Phone";
