@@ -14,7 +14,6 @@ class LoginRepo {
       LoginRequestBody loginRequestBody) async {
     try {
       final response = await _loginFirebaseService.login(loginRequestBody);
-      //   response.user!.sendEmailVerification();
 
       return ApiResult.success(response);
     } catch (e) {

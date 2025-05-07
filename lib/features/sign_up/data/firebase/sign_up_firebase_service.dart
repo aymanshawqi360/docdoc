@@ -12,12 +12,6 @@ class SignUpFirebaseService {
             email: signUpRequestBody.email.toString(),
             password: signUpRequestBody.password.toString());
 
-    // await _firebaseFactory.firestore!.collection("yourProfile").add({
-    //   "fullNmae": sigbUpRequestBody.fullName,
-    //   "image": sigbUpRequestBody.image,
-    //   "yourNumber": sigbUpRequestBody.yourNumber,
-    // });
-
     return response;
   }
 

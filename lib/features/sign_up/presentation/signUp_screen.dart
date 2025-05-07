@@ -4,12 +4,16 @@ import 'package:docdoc/core/routing/routes.dart';
 import 'package:docdoc/core/theming/styles.dart';
 import 'package:docdoc/core/widget/app_or_signIn_with.dart';
 import 'package:docdoc/core/widget/app_welcome_back_and_were_excited.dart';
+import 'package:docdoc/features/login/logic/cubit/login_cubit.dart';
 import 'package:docdoc/features/login/presentation/widget/text_google_button.dart';
+import 'package:docdoc/features/sign_up/logic/cubit/sign_up_cubit.dart';
+import 'package:docdoc/features/sign_up/presentation/widget/sign_up_bloc_listener.dart';
 import 'package:docdoc/features/sign_up/presentation/widget/sign_up_email_and_password.dart';
 import 'package:docdoc/features/sign_up/presentation/widget/sign_up_text_button.dart';
 import 'package:docdoc/features/sign_up/presentation/widget/sign_up_text_google_button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -44,7 +48,9 @@ class SignUpScreen extends StatelessWidget {
                     verticalSpace(32),
                     SignUpTextButton(
                       text: "Login",
-                      onTap: () {},
+                      onTap: () {
+                        userInputs(context);
+                      },
                     ),
                     verticalSpace(20),
                     const AppOrSigninWith(),
@@ -86,14 +92,22 @@ class SignUpScreen extends StatelessWidget {
                     style: TextStyles.font13BlueRegular,
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        context.pushNamedAndRemoveUntil(Routes.login,
-                            predicate: (v) => false);
+                        context.pushNamed(
+                          Routes.login,
+                        );
                       }),
               ])),
+              const SignUpBlocListener()
             ],
           ),
         ),
       )),
     );
+  }
+
+  userInputs(BuildContext context) {
+    if (context.read<SignUpCubit>().formKey.currentState!.validate()) {
+      context.read<SignUpCubit>().signUp();
+    }
   }
 }

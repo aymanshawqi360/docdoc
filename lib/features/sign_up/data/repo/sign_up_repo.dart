@@ -14,7 +14,7 @@ class SignUpRepo {
       SignUpRequestBody signUpRequestBody) async {
     try {
       final response = await _signUpFirebaseService.signUp(signUpRequestBody);
-      //   response.user!.sendEmailVerification();
+      response.user!.sendEmailVerification();
 
       return ApiResult.success(response);
     } catch (e) {
