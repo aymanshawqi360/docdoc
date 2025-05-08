@@ -41,7 +41,7 @@ class SignUpTextGoogleButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16.r)),
             child: state is SignUpGoogleLoading
                 ? const CircularProgressIndicator()
-                : Center(child: SvgPicture.asset(AppAssets().googleLogo)
+                : Center(child: SvgPicture.asset(AppAssets().googleLogoSvg)
                     //     Text(
                     //   "Get Started",
                     //   style: TextStyles.font16LightBlueSemiBold,

@@ -42,7 +42,7 @@ class TextGoogleButton extends StatelessWidget {
             decoration: BoxDecoration(
                 color: ColorsManager.lighterGray,
                 borderRadius: BorderRadius.circular(16.r)),
-            child: Center(child: SvgPicture.asset(AppAssets().googleLogo)
+            child: Center(child: SvgPicture.asset(AppAssets().googleLogoSvg)
                 //     Text(
                 //   "Get Started",
                 //   style: TextStyles.font16LightBlueSemiBold,

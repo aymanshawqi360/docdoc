@@ -11,7 +11,7 @@ class DoctorImageAndText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        SvgPicture.asset(AppAssets().onboardingDocdocLogoLowTransparency),
+        SvgPicture.asset(AppAssets().onboardingDocdocLogoLowTransparencySvg),
         Container(
           foregroundDecoration: BoxDecoration(
             gradient: LinearGradient(
