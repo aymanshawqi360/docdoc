@@ -1,4 +1,9 @@
+import 'package:dio/dio.dart';
+import 'package:docdoc/core/networking/dio_factory.dart';
 import 'package:docdoc/core/networking/firebase_factory.dart';
+import 'package:docdoc/features/home/data/apis/home_api_service.dart';
+import 'package:docdoc/features/home/data/repo/home_repo.dart';
+import 'package:docdoc/features/home/logic/cubit/home_cubit.dart';
 import 'package:docdoc/features/login/data/firebase/login_firebase_service.dart';
 import 'package:docdoc/features/login/data/repo/login_repo.dart';
 import 'package:docdoc/features/login/logic/cubit/login_cubit.dart';
@@ -11,17 +16,24 @@ final getIt = GetIt.instance;
 
 void setup() {
   FirebaseFactory firebaseFactory = FirebaseFactory();
-  GetIt.I.registerLazySingleton<FirebaseFactory>(() => firebaseFactory);
+  getIt.registerLazySingleton<FirebaseFactory>(() => firebaseFactory);
+  Dio dio = DioFactory.getDio();
 
   //Login
-  GetIt.I.registerLazySingleton<LoginFirebaseService>(
+  getIt.registerLazySingleton<LoginFirebaseService>(
       () => LoginFirebaseService(getIt()));
-  GetIt.I.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
-  GetIt.I.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
+  getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
+  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
 
   //SignUp
-  GetIt.I.registerLazySingleton<SignUpFirebaseService>(
+  getIt.registerLazySingleton<SignUpFirebaseService>(
       () => SignUpFirebaseService(getIt()));
-  GetIt.I.registerLazySingleton<SignUpRepo>(() => SignUpRepo(getIt()));
-  GetIt.I.registerFactory<SignUpCubit>(() => SignUpCubit(getIt()));
+  getIt.registerLazySingleton<SignUpRepo>(() => SignUpRepo(getIt()));
+  getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt()));
+
+  //Home
+  // getIt.registerSingleton<DioFactory>(dio);
+  getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
+  getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
+  getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt()));
 }
