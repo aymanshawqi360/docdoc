@@ -1,0 +1,28 @@
+import 'dart:developer';
+
+import 'package:bloc/bloc.dart';
+import 'package:docdoc/core/networking/api_error_model.dart';
+import 'package:docdoc/core/networking/api_result.dart';
+import 'package:docdoc/features/home/data/model/sections_response_model.dart';
+import 'package:docdoc/features/home/data/repo/home_repo.dart';
+import 'package:docdoc/features/home/logic/cubit/home_state.dart';
+
+class HomeCubit extends Cubit<HomeState> {
+  final HomeRepo _homeRepo;
+  HomeCubit(this._homeRepo) : super(HomeInitial());
+
+  getSections() async {
+    emit(HomeLoading());
+    final response = await _homeRepo.getSections();
+
+    if (response is Success<SectionsResponseModel>) {
+      log("cubit${response.data.toString()}");
+      List<String> dd =
+          response.data.toJson().values.map((v) => v.toString()).toList();
+      emit(HomeSuccess(listDoctorSpeciality: dd));
+    } else if (response is Failure<SectionsResponseModel>) {
+      emit(HomeFaiture(
+          error: ApiErrorModel(error: response.error.error.toString())));
+    }
+  }
+}
