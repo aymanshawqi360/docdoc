@@ -20,7 +20,7 @@ class LoginBlocListener extends StatelessWidget {
           if (state is LoginLoading) {}
           if (state is LoginSuccess) {
             if (state.user.user?.emailVerified == true) {
-              context.pushNamedAndRemoveUntil(Routes.homeScreen,
+              context.pushNamedAndRemoveUntil(Routes.bottomNavigationBar,
                   predicate: (v) => false);
             } else {
               _textShowDialog(context,

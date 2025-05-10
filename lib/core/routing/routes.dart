@@ -3,5 +3,5 @@ class Routes {
   static const login = "/login";
   static const homeScreen = "/homeScreen";
   static const signUp = "/signUp";
-  // static const bottomNavigationBar = "/bottomNavigationBar";
+  static const bottomNavigationBar = "/bottomNavigationBar";
 }
