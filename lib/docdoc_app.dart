@@ -21,7 +21,7 @@ class DocdocApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           initialRoute: (FirebaseAuth.instance.currentUser != null &&
                   FirebaseAuth.instance.currentUser!.emailVerified)
-              ? Routes.homeScreen
+              ? Routes.bottomNavigationBar
               : Routes.onboarding,
           onGenerateRoute: appRouter.generateRoute,
         );

@@ -27,7 +27,7 @@ class TextGoogleButton extends StatelessWidget {
           _textShowDialog(context, error: state.error.error.toString());
         }
         if (state is LoginGoogleSuccess) {
-          context.pushNamedAndRemoveUntil(Routes.homeScreen,
+          context.pushNamedAndRemoveUntil(Routes.bottomNavigationBar,
               predicate: (v) => false);
         }
       },

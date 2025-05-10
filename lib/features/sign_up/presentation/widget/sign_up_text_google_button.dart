@@ -21,7 +21,7 @@ class SignUpTextGoogleButton extends StatelessWidget {
           current is SignUpGoogleSuccess,
       listener: (context, state) {
         if (state is SignUpGoogleSuccess) {
-          context.pushNamedAndRemoveUntil(Routes.homeScreen,
+          context.pushNamedAndRemoveUntil(Routes.bottomNavigationBar,
               predicate: (v) => false);
         }
         if (state is SignUpFailure) {
