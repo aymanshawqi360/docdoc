@@ -23,10 +23,17 @@ class _DoctorSpecialityState extends State<DoctorSpeciality> {
     AppAssets().pediatric,
     AppAssets().radiology,
   ];
+  // @override
+  // void initState() {
+  //   context.read<HomeCubit>().getSections();
+  //   // context.read<HomeCubit>().getDoctors();
+  //   super.initState();
+  // }
+
   @override
   Widget build(ext) {
     return SizedBox(
-      height: 100.h,
+      height: 86.h,
       width: double.infinity,
       child: BlocBuilder<HomeCubit, HomeState>(
         buildWhen: (previous, current) =>
@@ -38,28 +45,35 @@ class _DoctorSpecialityState extends State<DoctorSpeciality> {
             return ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: state.listDoctorSpeciality.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsetsDirectional.only(start: 0.w),
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 20.w),
-                          height: 43.h,
-                          width: 43.w,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFFF4F8FF),
-                            shape: BoxShape.circle,
+                itemBuilder: (contextt, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      context
+                          .read<HomeCubit>()
+                          .getDoctors(name: state.listDoctorSpeciality[index]);
+                    },
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.only(start: 0.w),
+                      child: Column(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 20.w),
+                            height: 43.h,
+                            width: 43.w,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFF4F8FF),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(
+                              images[index],
+                              scale: 2.5,
+                            ),
                           ),
-                          child: Image.asset(
-                            images[index],
-                            scale: 2.5,
-                          ),
-                        ),
-                        verticalSpace(12),
-                        // const Text("General"),
-                        Text(state.listDoctorSpeciality[index].toString()),
-                      ],
+                          verticalSpace(12),
+                          // const Text("General"),
+                          Text(state.listDoctorSpeciality[index].toString()),
+                        ],
+                      ),
                     ),
                   );
                 });

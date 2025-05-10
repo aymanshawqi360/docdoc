@@ -2,6 +2,7 @@ import 'package:docdoc/core/di/dependency_injection.dart';
 import 'package:docdoc/core/routing/routes.dart';
 import 'package:docdoc/features/home/home_screen.dart';
 import 'package:docdoc/features/home/logic/cubit/home_cubit.dart';
+
 import 'package:docdoc/features/login/logic/cubit/login_cubit.dart';
 import 'package:docdoc/features/onboarding/onboarding_screen.dart';
 import 'package:docdoc/features/login/presentation/login_screen.dart';
@@ -15,6 +16,9 @@ class AppRouter {
     switch (settings.name) {
       case Routes.onboarding:
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
+      // case Routes.bottomNavigationBar:
+      //   return MaterialPageRoute(
+      //       builder: (_) => const BottomNavigationBarScreen());
       case Routes.login:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
@@ -35,8 +39,7 @@ class AppRouter {
                 ));
 
       default:
-        null;
+        return null;
     }
-    return null;
   }
 }
