@@ -1,6 +1,8 @@
 import 'package:docdoc/core/di/dependency_injection.dart';
 import 'package:docdoc/core/routing/routes.dart';
 import 'package:docdoc/features/botton_navgation_bar/botton_navgation_bar_screen.dart';
+import 'package:docdoc/features/doctor_detail/doctor_detail_screen.dart';
+import 'package:docdoc/features/home/data/model/doctors_response_model.dart';
 import 'package:docdoc/features/home/home_screen.dart';
 import 'package:docdoc/features/home/logic/cubit/home_cubit.dart';
 
@@ -14,6 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
+    final arguments = settings.arguments;
     switch (settings.name) {
       case Routes.onboarding:
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
@@ -34,6 +37,11 @@ class AppRouter {
                 ));
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case Routes.doctorDetail:
+        return MaterialPageRoute(
+            builder: (_) => DoctorDetailScreen(
+                  doctor: arguments as Doctor,
+                ));
 
       default:
         return null;
