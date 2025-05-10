@@ -22,7 +22,7 @@ class HomeRepo {
     }
   }
 
-  Future<ApiResult<List<General>>> getDoctors({required String name}) async {
+  Future<ApiResult<List<Doctor>>> getDoctors({required String name}) async {
     try {
       log("DoctorsResponseModel====================");
       log(_homeApiService.getDoctors(name).runtimeType.toString());

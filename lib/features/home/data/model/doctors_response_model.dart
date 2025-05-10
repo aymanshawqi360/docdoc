@@ -3,16 +3,16 @@ part 'doctors_response_model.g.dart';
 
 @JsonSerializable()
 class DoctorsResponseModel {
-  @JsonKey(name: 'general')
-  List<General>? generalItemList;
+  @JsonKey(name: 'Doctor')
+  List<Doctor>? DoctorItemList;
   @JsonKey(name: 'neurologist')
-  List<General>? neurologistItemList;
+  List<Doctor>? neurologistItemList;
   @JsonKey(name: 'pediatric')
-  List<General>? pediatricItemList;
+  List<Doctor>? pediatricItemList;
   @JsonKey(name: 'radiology')
-  List<General>? radiologyItemList;
+  List<Doctor>? radiologyItemList;
   DoctorsResponseModel(
-    this.generalItemList,
+    this.DoctorItemList,
     this.neurologistItemList,
     this.pediatricItemList,
     this.radiologyItemList,
@@ -24,7 +24,7 @@ class DoctorsResponseModel {
 }
 
 @JsonSerializable()
-class General {
+class Doctor {
   final int? id;
   final String? image;
   final String? name;
@@ -37,12 +37,11 @@ class General {
   final WorkingHours? hours;
   final String? clinic;
   final String? description;
-  General(this.clinic, this.description, this.hours, this.id, this.image,
+  Doctor(this.clinic, this.description, this.hours, this.id, this.image,
       this.late, this.name, this.phone, this.specialty, this.reviews);
-  factory General.fromJson(Map<String, dynamic> json) =>
-      _$GeneralFromJson(json);
+  factory Doctor.fromJson(Map<String, dynamic> json) => _$DoctorFromJson(json);
 
-  Map<String, dynamic> toJson() => _$GeneralToJson(this);
+  Map<String, dynamic> toJson() => _$DoctorToJson(this);
 }
 
 @JsonSerializable()

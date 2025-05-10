@@ -16,5 +16,5 @@ abstract class HomeApiService {
   Future<SectionsResponseModel> getSections();
 
   @GET('doctors/{name}.json')
-  Future<List<General>> getDoctors(@Path() String name);
+  Future<List<Doctor>> getDoctors(@Path() String name);
 }

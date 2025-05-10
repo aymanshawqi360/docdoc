@@ -9,30 +9,30 @@ part of 'doctors_response_model.dart';
 DoctorsResponseModel _$DoctorsResponseModelFromJson(
         Map<String, dynamic> json) =>
     DoctorsResponseModel(
-      (json['general'] as List<dynamic>?)
-          ?.map((e) => General.fromJson(e as Map<String, dynamic>))
+      (json['Doctor'] as List<dynamic>?)
+          ?.map((e) => Doctor.fromJson(e as Map<String, dynamic>))
           .toList(),
       (json['neurologist'] as List<dynamic>?)
-          ?.map((e) => General.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Doctor.fromJson(e as Map<String, dynamic>))
           .toList(),
       (json['pediatric'] as List<dynamic>?)
-          ?.map((e) => General.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Doctor.fromJson(e as Map<String, dynamic>))
           .toList(),
       (json['radiology'] as List<dynamic>?)
-          ?.map((e) => General.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Doctor.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$DoctorsResponseModelToJson(
         DoctorsResponseModel instance) =>
     <String, dynamic>{
-      'general': instance.generalItemList,
+      'Doctor': instance.DoctorItemList,
       'neurologist': instance.neurologistItemList,
       'pediatric': instance.pediatricItemList,
       'radiology': instance.radiologyItemList,
     };
 
-General _$GeneralFromJson(Map<String, dynamic> json) => General(
+Doctor _$DoctorFromJson(Map<String, dynamic> json) => Doctor(
       json['clinic'] as String?,
       json['description'] as String?,
       json['working_hours'] == null
@@ -48,7 +48,7 @@ General _$GeneralFromJson(Map<String, dynamic> json) => General(
       json['reviews'] as String?,
     );
 
-Map<String, dynamic> _$GeneralToJson(General instance) => <String, dynamic>{
+Map<String, dynamic> _$DoctorToJson(Doctor instance) => <String, dynamic>{
       'id': instance.id,
       'image': instance.image,
       'name': instance.name,

@@ -22,8 +22,8 @@ class HomeFaiture extends HomeState {
 class HomeRecommendationDoctorLoading extends HomeState {}
 
 class HomeRecommendationDoctorSuccess extends HomeState {
-  final List<General> listRecommendation;
-  // final DoctorsResponseModel listRecommendation;
+  final List<Doctor> listRecommendation;
+
   HomeRecommendationDoctorSuccess({required this.listRecommendation});
 }
 

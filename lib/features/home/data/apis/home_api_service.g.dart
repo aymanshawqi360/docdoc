@@ -47,12 +47,12 @@ class _HomeApiService implements HomeApiService {
   }
 
   @override
-  Future<List<General>> getDoctors(String name) async {
+  Future<List<Doctor>> getDoctors(String name) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<General>>(
+    final _options = _setStreamType<List<Doctor>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -63,10 +63,10 @@ class _HomeApiService implements HomeApiService {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<General> _value;
+    late List<Doctor> _value;
     try {
       _value = _result.data!
-          .map((dynamic i) => General.fromJson(i as Map<String, dynamic>))
+          .map((dynamic i) => Doctor.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
