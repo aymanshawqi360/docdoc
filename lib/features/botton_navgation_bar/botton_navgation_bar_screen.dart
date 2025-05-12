@@ -1,5 +1,10 @@
 import 'package:docdoc/core/di/dependency_injection.dart';
+import 'package:docdoc/core/helpers/app_assets.dart';
+import 'package:docdoc/core/helpers/extension.dart';
+import 'package:docdoc/core/routing/routes.dart';
 import 'package:docdoc/core/theming/colors.dart';
+import 'package:docdoc/features/botton_navgation_bar/empty_page.dart';
+import 'package:docdoc/features/botton_navgation_bar/personal_Page.dart';
 import 'package:docdoc/features/home/home_screen.dart';
 import 'package:docdoc/features/home/logic/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
@@ -16,25 +21,23 @@ class BottomNavigationBarScreen extends StatefulWidget {
 
 class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
   List<Widget> bottomNavigationBarScreen = [
-    BlocProvider(
-      create: (context) => getIt<HomeCubit>(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<HomeCubit>(),
+        ),
+      ],
       child: const HomeScreen(),
     ),
-    Container(
-      color: Colors.red,
-    ),
-    Container(
-      color: Colors.green,
-    ),
-    Container(
-      color: Colors.blue,
-    ),
-    Container(
-      color: Colors.blueGrey,
-    ),
-    Container(
-      color: Colors.blueGrey,
-    )
+
+    // Container(
+    //   color: Colors.blue,
+    EmptyPage(),
+
+    // ),
+    EmptyPage(),
+    EmptyPage(),
+    PersonalPage()
   ];
   int pageIndex = 0;
 
@@ -57,10 +60,12 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                       size: 24.sp,
                     ),
                     _buildNavItem(
-                        icon: Icons.abc_outlined, index: 1, size: 24.sp),
+                        icon: Icons.favorite_border_outlined,
+                        index: 1,
+                        size: 24.sp),
                     const SizedBox.shrink(),
                     _buildNavItem(
-                        index: 3, icon: Icons.timer_rounded, size: 24.sp),
+                        index: 3, icon: Icons.calendar_month, size: 24.sp),
                     _buildNavItem(
                       index: 4,
                     )
@@ -73,38 +78,27 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
         ),
         Stack(
           children: [
-            // Align(
-            //   alignment: Alignment.bottomCenter,
-            //   // heightFactor: 8.3,
-            //   child: Container(
-            //       // width: 85,
-            //       // height: 5,
-            //       child: Image.asset(
-            //     "assets/images/ayman.png",
-            //     scale: 2.3,
-            //   )),
-            // ),
             Align(
               alignment: Alignment.bottomCenter,
-              heightFactor: 10.6,
+              heightFactor: 12.1,
               child: Container(
-                width: 75.w,
-                height: 75.h,
+                width: 65.w,
+                height: 65.h,
                 decoration: BoxDecoration(
                     color: ColorsManager.blue,
                     borderRadius: BorderRadius.circular(27.91)),
-                child: Icon(
-                  Icons.search,
-                  color: Colors.white,
+                child: GestureDetector(
+                  onTap: () {
+                    context.pushNamed(Routes.searchScreen);
+                  },
+                  child: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                    size: 26,
+                  ),
                 ),
               ),
             ),
-
-            // Container(
-            //   width: 50,
-            //   height: 50,
-            //   color: ColorsManager.blue,
-            // ),
           ],
         ),
       ],
@@ -131,34 +125,24 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                   ? Icon(icon, color: ColorsManager.darkBlue, size: size)
                   : CircleAvatar(
                       radius: size / 2,
-                      backgroundColor: Colors.amber,
+                      child: Image.asset(
+                        AppAssets().imageYou,
+                        color: ColorsManager.darkBlue,
+                      ),
                     ),
             )
           : icon != null
               ? Icon(icon, color: ColorsManager.blue, size: size)
               : CircleAvatar(
                   radius: size / 2,
-                  // backgroundImage: AssetImage(imagePath!),
-                  backgroundColor: Colors.amber,
+                  //backgroundColor: Colors.amber,
+
+                  child: Image.asset(
+                    AppAssets().imageYou,
+                    scale: 5,
+                    color: ColorsManager.blue,
+                  ),
                 ),
     );
   }
-
-  // _buildNavItem(
-  //   IconData? bbb,
-  //   int index,
-  //   double size,
-  // ) {
-  //   return GestureDetector(
-  //     onTap: () {
-  //       setState(() {
-  //         a = index;
-  //       });
-  //     },
-  //     child: CircleAvatar() ??
-  //         Icon(bbb,
-  //             color: a == index ? ColorsManager.darkBlue : ColorsManager.blue,
-  //             size: size),
-  //   );
-  // }
 }

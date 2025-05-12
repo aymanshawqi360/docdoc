@@ -1,14 +1,17 @@
 import 'package:docdoc/core/di/dependency_injection.dart';
 import 'package:docdoc/core/routing/routes.dart';
+import 'package:docdoc/features/book_appointment/presentation/book_appointment.dart';
+
 import 'package:docdoc/features/botton_navgation_bar/botton_navgation_bar_screen.dart';
 import 'package:docdoc/features/doctor_detail/doctor_detail_screen.dart';
 import 'package:docdoc/features/home/data/model/doctors_response_model.dart';
 import 'package:docdoc/features/home/home_screen.dart';
-import 'package:docdoc/features/home/logic/cubit/home_cubit.dart';
 
 import 'package:docdoc/features/login/logic/cubit/login_cubit.dart';
 import 'package:docdoc/features/onboarding/onboarding_screen.dart';
 import 'package:docdoc/features/login/presentation/login_screen.dart';
+import 'package:docdoc/features/search_screen/logic/cubit/search_cubit.dart';
+import 'package:docdoc/features/search_screen/search_screen.dart';
 import 'package:docdoc/features/sign_up/logic/cubit/sign_up_cubit.dart';
 import 'package:docdoc/features/sign_up/presentation/signUp_screen.dart';
 import 'package:flutter/material.dart';
@@ -37,10 +40,20 @@ class AppRouter {
                 ));
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+
       case Routes.doctorDetail:
         return MaterialPageRoute(
             builder: (_) => DoctorDetailScreen(
                   doctor: arguments as Doctor,
+                ));
+      case Routes.bookAppointment:
+        return MaterialPageRoute(
+            builder: (_) => BookAppointment(doctor: arguments as Doctor));
+      case Routes.searchScreen:
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => getIt<SearchCubit>(),
+                  child: const SearchScreen(),
                 ));
 
       default:

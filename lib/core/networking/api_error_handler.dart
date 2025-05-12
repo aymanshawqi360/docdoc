@@ -58,85 +58,80 @@ class ApiErrorHandler {
         switch (e.code) {
           case "too-many-requests":
             return ApiErrorModel(
-                error: "تم حظر الجهاز مؤقتًا. الرجاء المحاولة لاحقًا. ");
+                error:
+                    "This device has been temporarily blocked. Please try again later.");
           case 'invalid-credential':
             return ApiErrorModel(
               error:
-                  " توجد مشكلة في بيانات تسجيل الدخول: قد تكون غير صحيحة، منتهية، أو كلمة المرور ضعيفة. ",
+                  "There is an issue with the login credentials: they may be incorrect, expired, or the password is weak.",
             );
           case 'operation-not-allowed':
             return ApiErrorModel(
                 error:
-                    " تسجيل الدخول باستخدام Google غير مفعل في إعدادات Firebase.");
+                    "Google Sign-In is not enabled in your Firebase settings.");
           case 'account-exists-with-different-credential':
             return ApiErrorModel(
                 error:
-                    " حساب مرتبط بهذا البريد الإلكتروني باستخدام طريقة تسجيل مختلفة.");
+                    "An account already exists with this email using a different sign-in method.");
           case 'invalid-email':
             return ApiErrorModel(
-              error: " البريد الإلكتروني غير صالح.",
+              error: "The email address is not valid.",
             );
           case 'user-disabled':
             return ApiErrorModel(
-              error: " هذا المستخدم تم تعطيله.",
+              error: "This user account has been disabled.",
             );
-
           case 'user-not-found':
             return ApiErrorModel(
-              error: " لا يوجد حساب مرتبط بهذا البريد.",
+              error: "No account found with this email.",
             );
           case 'wrong-password':
-            return ApiErrorModel(error: "🔑 كلمة المرور غير صحيحة.");
+            return ApiErrorModel(error: "The password is incorrect.");
           case 'email-already-in-use':
             return ApiErrorModel(
-              error: " البريد مستخدم مسبقًا.",
+              error: "This email is already in use.",
             );
           case 'weak-password':
-            return ApiErrorModel(error: "كلمة المرور ضعيفة جدًا.");
-
-          // case 'too-many-requests':
-          //   return ApiErrorModel(
-          //       error: " عدد محاولات تسجيل الدخول كبير جدًا. حاول لاحقًا.");
+            return ApiErrorModel(error: "The password is too weak.");
           case 'network-request-failed':
             return ApiErrorModel(
-              error: " تأكد من اتصال الإنترنت وحاول مرة أخرى.",
+              error: "Please check your internet connection and try again.",
             );
-
           case 'invalid-verification-code':
-            return ApiErrorModel(error: " رمز التحقق غير صحيح.");
+            return ApiErrorModel(error: "The verification code is incorrect.");
           case 'invalid-verification-id':
-            return ApiErrorModel(error: "رمز التحقق من الهوية غير صالح.");
-
+            return ApiErrorModel(error: "The verification ID is invalid.");
           case 'credential-already-in-use':
-            return ApiErrorModel(error: "بيانات الاعتماد مستخدمة مسبقاً.");
+            return ApiErrorModel(
+                error: "These credentials are already in use.");
           case 'requires-recent-login':
             return ApiErrorModel(
-                error: "يلزم تسجيل الدخول مؤخرًا للقيام بهذه العملية.");
+                error: "Recent login is required to perform this operation.");
           case 'user-mismatch':
             return ApiErrorModel(
-                error: " بيانات الاعتماد لا تتطابق مع المستخدم الحالي.");
+                error:
+                    "The provided credentials do not match the current user.");
           case 'expired-action-code':
-            return ApiErrorModel(error: " رمز الإجراء منتهي.");
+            return ApiErrorModel(error: "The action code has expired.");
           case 'invalid-action-code':
             return ApiErrorModel(
-              error: " رمز الإجراء غير صالح.",
+              error: "The action code is invalid.",
             );
           case 'session-expired':
-            return ApiErrorModel(error: " انتهت صلاحية الجلسة، حاول مرة أخرى.");
+            return ApiErrorModel(
+                error: "The session has expired. Please try again.");
           case 'missing-verification-code':
             return ApiErrorModel(
-              error: "لم يتم إدخال رمز التحقق.",
+              error: "The verification code was not entered.",
             );
-
           case 'internal-error':
             return ApiErrorModel(
-                error: " حدث خطأ داخلي في النظام. حاول مرة أخرى.");
-
+                error: "An internal error occurred. Please try again.");
           case 'sign_in_failed':
-            return ApiErrorModel(error: " فشل تسجيل الدخول. حاول مرة أخرى.");
-
+            return ApiErrorModel(error: "Sign-in failed. Please try again.");
           default:
-            return ApiErrorModel(error: " حدث خطأ ما. حاول مرة أخرى لاحقًا.");
+            return ApiErrorModel(
+                error: "An unexpected error occurred. Please try again later.");
         }
       } else if (e is PlatformException) {
         final code = e.code;
@@ -146,70 +141,40 @@ class ApiErrorHandler {
             message.contains('7:') ||
             details == '7') {
           return ApiErrorModel(
-            error: " فشل في الاتصال بالخادم (تحقق من الاتصال بالإنترنت)",
+            error:
+                "Failed to connect to the server (check your internet connection).",
           );
         } else if (details == '8') {
           return ApiErrorModel(
-            error: " اسم الخدمة غير معروف (مشكلة DNS)",
+            error: "Unknown service name (DNS issue).",
           );
         } else if (details == '101') {
           return ApiErrorModel(
-            error: "الشبكة غير متاحة (لا يوجد اتصال Wi-Fi أو بيانات)",
+            error: "Network unavailable (no Wi-Fi or mobile data connection).",
           );
         } else if (details == '110') {
           return ApiErrorModel(
-            error: "مهلة الاتصال انتهت (الخادم لم يستجب)",
+            error: "Connection timeout (server did not respond).",
           );
         } else if (details == '111') {
           return ApiErrorModel(
-            error: " الخادم رفض الاتصال (قد يكون غير متاح)",
+            error: "Server refused the connection (might be unavailable).",
           );
         } else if (details == '113') {
           return ApiErrorModel(
-            error: "لا يوجد طريق للوصول إلى الخادم (مشاكل في الشبكة)",
+            error: "No route to server (network issues).",
           );
         } else if (details == '-2') {
-          return ApiErrorModel(error: "فشل مؤقت في تحليل اسم النطاق (DNS)");
+          return ApiErrorModel(
+            error: "Temporary failure in name resolution (DNS error).",
+          );
         } else if (details == 'ERROR_NETWORK_REQUEST_FAILED' || code.isEmpty) {
           return ApiErrorModel(
-            error: " فشل في الاتصال بالخادم (تحقق من الاتصال بالإنترنت)",
+            error:
+                "Failed to connect to the server (check your internet connection).",
           );
         }
       }
-      // } else if (e == 'permission_denied') {
-      //   return ApiErrorModel(
-      //     error:
-      //         LocaleKeys.FirebaseErrorFacebook_FacebookAccountAccessDenied.tr(),
-      //   );
-      // } else if (e == 'login_failed') {
-      //   return ApiErrorModel(
-      //     error: LocaleKeys
-      //         .FirebaseErrorFacebook_FacebookLoginFailedCheckAppSettings.tr(),
-      //   );
-      // } else if (e == 'app_not_set_up') {
-      //   return ApiErrorModel(
-      //     error: LocaleKeys
-      //             .FirebaseErrorFacebook_TheAppIsNotSetUpOnTheFacebookDeveloperConsole
-      //         .tr(),
-      //   );
-      // } else if (e == 'invalid_key_hash') {
-      //   return ApiErrorModel(
-      //     error: LocaleKeys
-      //             .FirebaseErrorFacebook_TheKeyIsIncorrectMakeSureYouAddedTheCorrectkeyHashInYourFacebookSettings
-      //         .tr(),
-      //   );
-      // } else if (e == 'access_denied') {
-      //   return ApiErrorModel(
-      //       error: LocaleKeys.FirebaseErrorFacebook_FacebookAccountAccessDenied
-      //           .tr());
-      // } else {
-      //   return ApiErrorModel(
-      //     error: ' حدث استثناء غير معروف: ${e.toString()}',
-      //   );
-      // }
-
-      // log("message-================${e.toString()}");
-      // return ApiErrorModel(error: e.toString());
     }
     log(e.toString());
     return ApiErrorModel(error: " خطأ غير متوقع: ${e.toString()}");

@@ -5,4 +5,8 @@ class Routes {
   static const signUp = "/signUp";
   static const bottomNavigationBar = "/bottomNavigationBar";
   static const doctorDetail = "/doctorDetail";
+  static const bookAppointment = "/bookAppointment";
+  static const date = "/date";
+  static const paymentScreen = "/paymentScreen";
+  static const searchScreen = "/searchScreen";
 }

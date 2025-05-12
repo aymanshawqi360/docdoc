@@ -58,9 +58,14 @@ dependencies:
   json_serializable: ^6.9.5
   # A build system for Dart code generation and modular compilation
   build_runner: ^2.4.15
-  
   # for dependency injection
   get_it: ^8.0.3
+  intl: ^0.19.0
+  date_picker_timeline: ^1.2.6
+  redacted: ^1.0.13
+  cached_network_image: ^3.4.1
+  # reading and writing simple key-value pairs
+  shared_preferences: ^2.5.3
   
 
 

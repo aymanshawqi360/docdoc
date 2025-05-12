@@ -4,8 +4,6 @@ import 'package:docdoc/core/routing/routes.dart';
 import 'package:docdoc/core/theming/styles.dart';
 import 'package:docdoc/core/widget/app_or_signIn_with.dart';
 import 'package:docdoc/core/widget/app_welcome_back_and_were_excited.dart';
-import 'package:docdoc/features/login/logic/cubit/login_cubit.dart';
-import 'package:docdoc/features/login/presentation/widget/text_google_button.dart';
 import 'package:docdoc/features/sign_up/logic/cubit/sign_up_cubit.dart';
 import 'package:docdoc/features/sign_up/presentation/widget/sign_up_bloc_listener.dart';
 import 'package:docdoc/features/sign_up/presentation/widget/sign_up_email_and_password.dart';

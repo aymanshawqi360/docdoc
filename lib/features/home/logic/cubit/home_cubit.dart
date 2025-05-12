@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:docdoc/core/networking/api_error_model.dart';
 import 'package:docdoc/core/networking/api_result.dart';
@@ -17,7 +15,6 @@ class HomeCubit extends Cubit<HomeState> {
     final response = await _homeRepo.getSections();
 
     if (response is Success<SectionsResponseModel>) {
-      log("cubit${response.data.toString()}");
       List<String> dd =
           response.data.toJson().values.map((v) => v.toString()).toList();
       emit(HomeSuccess(listDoctorSpeciality: dd));
@@ -30,7 +27,7 @@ class HomeCubit extends Cubit<HomeState> {
   getDoctors({required String name}) async {
     emit(HomeRecommendationDoctorLoading());
     final response = await _homeRepo.getDoctors(name: name);
-    log("HomeRecommendationDoctorLoading===================${response}");
+
     if (response is Success<List<Doctor>>) {
       //log("HomeRecommendationDoctorSuccess===================${response.data.}");
 
