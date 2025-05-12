@@ -16,8 +16,7 @@ class DocdocApp extends StatelessWidget {
       minTextAdapt: true,
       builder: (context, child) {
         return MaterialApp(
-          theme:
-              ThemeData(scaffoldBackgroundColor: ColorsManager.moreLighterGray),
+          theme: ThemeData(scaffoldBackgroundColor: ColorsManager.lightBlue),
           debugShowCheckedModeBanner: false,
           initialRoute: (FirebaseAuth.instance.currentUser != null &&
                   FirebaseAuth.instance.currentUser!.emailVerified)

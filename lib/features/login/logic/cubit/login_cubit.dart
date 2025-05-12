@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:docdoc/core/networking/api_error_handler.dart';
 import 'package:docdoc/core/networking/api_error_model.dart';
@@ -28,6 +30,7 @@ class LoginCubit extends Cubit<LoginState> {
       // } else {
       //   emit(LoginFailure(errorl: ApiErrorModel(error: "المستخدم غير موجود")));
       // }
+      log("LoginSuccess======================${response.data.user!.uid}");
       emit(LoginSuccess(response.data));
     } else if (response is Failure<UserCredential>) {
       emit(LoginFailure(

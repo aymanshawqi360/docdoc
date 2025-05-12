@@ -1,9 +1,9 @@
 import 'package:docdoc/core/helpers/spacing.dart';
 import 'package:docdoc/core/theming/styles.dart';
 import 'package:docdoc/features/home/logic/cubit/home_cubit.dart';
-import 'package:docdoc/features/home/presentation/widget/doctor_speciality.dart';
+import 'package:docdoc/features/home/presentation/widget/doctor_speciality/doctor_speciality.dart';
 import 'package:docdoc/features/home/presentation/widget/home_banner_blue_with_text.dart';
-import 'package:docdoc/features/home/presentation/widget/recommendation_doctor.dart';
+import 'package:docdoc/features/home/presentation/widget/recommendation_doctor/recommendarion_list_view.dart';
 import 'package:docdoc/features/home/presentation/widget/your_name_and_how_are_you_today_and_notificationsSvg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
               verticalSpace(23),
               _textRecommendationDoctor(),
               verticalSpace(20),
-              const Expanded(child: RecommendationDoctor()),
+              const Expanded(child: RecommendarionListView()),
+              // Text(FirebaseFactory().firebaseAuth!.currentUser!.uid.toString()),
+              // Text(FirebaseFactory().firebaseAuth!.currentUser!.displayName.toString()),
             ],
           ),
         ),
@@ -57,10 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
         Text(
           "Recommendation Doctor",
           style: TextStyles.font18DarkBlueSemiBold,
-        ),
-        Text(
-          "See All",
-          style: TextStyles.font12BlueLight,
         ),
       ],
     );

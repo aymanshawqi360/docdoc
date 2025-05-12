@@ -31,3 +31,13 @@ class HomeRecommendationDoctorFailure extends HomeState {
   final ApiErrorModel error;
   HomeRecommendationDoctorFailure({required this.error});
 }
+
+class BookAppointmentLoading extends HomeState {}
+
+class BookAppointmentSuccess extends HomeState {}
+
+class BookAppointmentFailure extends HomeState {
+  final ApiErrorModel errorModel;
+
+  BookAppointmentFailure({required this.errorModel});
+}

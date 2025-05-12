@@ -20,22 +20,6 @@ class _SignUpEmailAndPasswordState extends State<SignUpEmailAndPassword> {
       key: context.read<SignUpCubit>().formKey,
       child: Column(
         children: [
-          Image.asset(
-            "assets/images/image_you.png",
-            scale: 0.8,
-          ),
-          verticalSpace(28),
-          AppTextFormButton(
-            hintText: "Full Name",
-            controller: context.read<SignUpCubit>().controllerFullName,
-            validator: (value) {
-              if (value?.isEmpty == true) {
-                return "Invalid Full Name";
-              } else if (value?.length == 30) {
-                return "The Full Name is too long";
-              }
-            },
-          ),
           verticalSpace(14),
           AppTextFormButton(
             hintText: "Email",
@@ -55,18 +39,6 @@ class _SignUpEmailAndPasswordState extends State<SignUpEmailAndPassword> {
                 return "Invalid Password";
               } else if (value?.length == 30) {
                 return "The password is too long";
-              }
-            },
-          ),
-          verticalSpace(14),
-          AppTextFormButton(
-            hintText: "Phone",
-            controller: context.read<SignUpCubit>().controllerPhone,
-            validator: (value) {
-              if (value?.isEmpty == true) {
-                return "Invalid Phone";
-              } else if (value?.length == 30) {
-                return "The Phone is too long";
               }
             },
           ),

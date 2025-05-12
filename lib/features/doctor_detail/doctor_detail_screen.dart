@@ -1,6 +1,9 @@
+import 'package:docdoc/core/di/dependency_injection.dart';
 import 'package:docdoc/core/helpers/spacing.dart';
 import 'package:docdoc/core/theming/styles.dart';
 import 'package:docdoc/core/widget/app_text_button.dart';
+import 'package:docdoc/features/book_appointment/logic/cubit/book_appointment_cubit.dart';
+import 'package:docdoc/features/book_appointment/presentation/book_appointment.dart';
 import 'package:docdoc/features/doctor_detail/widget/about_and_description.dart';
 import 'package:docdoc/features/doctor_detail/widget/appBar_doctor_detial.dart';
 import 'package:docdoc/features/doctor_detail/widget/hour_and_phone_and_place_of_care.dart';
@@ -9,6 +12,7 @@ import 'package:docdoc/features/doctor_detail/widget/picture_and_name_and_specia
 
 import 'package:docdoc/features/home/data/model/doctors_response_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DoctorDetailScreen extends StatefulWidget {
@@ -57,10 +61,19 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                 padding: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height / 5),
                 child: AppTextButton(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => BlocProvider(
+                            create: (context) => getIt<BookAppointmentCubit>(),
+                            child: BookAppointment(doctor: widget.doctor),
+                          ),
+                        ));
+                  },
                   text: "Make An Appointment",
                 ),
-              )
+              ),
             ],
           ),
         ),

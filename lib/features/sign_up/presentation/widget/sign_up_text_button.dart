@@ -1,6 +1,3 @@
-import 'package:docdoc/core/helpers/extension.dart';
-import 'package:docdoc/core/networking/api_result.dart';
-import 'package:docdoc/core/routing/routes.dart';
 import 'package:docdoc/core/theming/colors.dart';
 import 'package:docdoc/core/theming/styles.dart';
 import 'package:docdoc/features/sign_up/logic/cubit/sign_up_cubit.dart';

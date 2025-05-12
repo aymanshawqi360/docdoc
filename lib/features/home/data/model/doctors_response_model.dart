@@ -4,7 +4,7 @@ part 'doctors_response_model.g.dart';
 @JsonSerializable()
 class DoctorsResponseModel {
   @JsonKey(name: 'Doctor')
-  List<Doctor>? DoctorItemList;
+  List<Doctor>? doctorItemList;
   @JsonKey(name: 'neurologist')
   List<Doctor>? neurologistItemList;
   @JsonKey(name: 'pediatric')
@@ -12,7 +12,7 @@ class DoctorsResponseModel {
   @JsonKey(name: 'radiology')
   List<Doctor>? radiologyItemList;
   DoctorsResponseModel(
-    this.DoctorItemList,
+    this.doctorItemList,
     this.neurologistItemList,
     this.pediatricItemList,
     this.radiologyItemList,
@@ -29,7 +29,8 @@ class Doctor {
   final String? image;
   final String? name;
   final String? phone;
-
+  @JsonKey(name: "available_time")
+  final List<String> availableTime;
   final String? reviews;
   final double? late;
   final String? specialty;
@@ -37,8 +38,18 @@ class Doctor {
   final WorkingHours? hours;
   final String? clinic;
   final String? description;
-  Doctor(this.clinic, this.description, this.hours, this.id, this.image,
-      this.late, this.name, this.phone, this.specialty, this.reviews);
+  Doctor(
+      this.clinic,
+      this.description,
+      this.hours,
+      this.id,
+      this.image,
+      this.late,
+      this.name,
+      this.phone,
+      this.specialty,
+      this.reviews,
+      this.availableTime);
   factory Doctor.fromJson(Map<String, dynamic> json) => _$DoctorFromJson(json);
 
   Map<String, dynamic> toJson() => _$DoctorToJson(this);

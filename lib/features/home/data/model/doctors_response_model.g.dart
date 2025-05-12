@@ -26,7 +26,7 @@ DoctorsResponseModel _$DoctorsResponseModelFromJson(
 Map<String, dynamic> _$DoctorsResponseModelToJson(
         DoctorsResponseModel instance) =>
     <String, dynamic>{
-      'Doctor': instance.DoctorItemList,
+      'Doctor': instance.doctorItemList,
       'neurologist': instance.neurologistItemList,
       'pediatric': instance.pediatricItemList,
       'radiology': instance.radiologyItemList,
@@ -46,6 +46,9 @@ Doctor _$DoctorFromJson(Map<String, dynamic> json) => Doctor(
       json['phone'] as String?,
       json['specialty'] as String?,
       json['reviews'] as String?,
+      (json['available_time'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$DoctorToJson(Doctor instance) => <String, dynamic>{
@@ -53,6 +56,7 @@ Map<String, dynamic> _$DoctorToJson(Doctor instance) => <String, dynamic>{
       'image': instance.image,
       'name': instance.name,
       'phone': instance.phone,
+      'available_time': instance.availableTime,
       'reviews': instance.reviews,
       'late': instance.late,
       'specialty': instance.specialty,

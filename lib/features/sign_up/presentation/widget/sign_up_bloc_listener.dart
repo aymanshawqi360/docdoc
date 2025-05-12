@@ -1,6 +1,6 @@
 import 'package:docdoc/core/helpers/extension.dart';
 import 'package:docdoc/core/routing/routes.dart';
-import 'package:docdoc/features/login/logic/cubit/login_state.dart';
+
 import 'package:docdoc/features/sign_up/logic/cubit/sign_up_cubit.dart';
 import 'package:docdoc/features/sign_up/logic/cubit/sign_up_state.dart';
 import 'package:flutter/material.dart';
